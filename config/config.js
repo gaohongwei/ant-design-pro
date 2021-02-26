@@ -23,12 +23,6 @@ export default {
           loadingComponent: './components/PageLoading/index',
         },
         polyfills: ['ie11'],
-        ...(!process.env.TEST && os.platform() === 'darwin'
-          ? {
-              dll: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
-              hardSource: true,
-            }
-          : {}),
       },
     ],
   ],
