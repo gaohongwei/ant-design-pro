@@ -22,7 +22,16 @@ const passwordStrength = {
   ),
 };
 
-class SecurityView extends Component {
+const setBaseInfo = ({ currentUser, form }) => {
+  const fv = form.getFieldsValue();
+  Object.keys(fv).forEach(key => {
+    const obj = {};
+    obj[key] = currentUser[key] || null;
+    form.setFieldsValue(obj);
+  });
+};
+
+const SecurityView = () => {
   getData = () => [
     {
       title: formatMessage({ id: 'app.settings.security.password' }, {}),
@@ -82,20 +91,18 @@ class SecurityView extends Component {
     },
   ];
 
-  render() {
-    return (
-      <Fragment>
-        <List
-          itemLayout="horizontal"
-          dataSource={this.getData()}
-          renderItem={item => (
-            <List.Item actions={item.actions}>
-              <List.Item.Meta title={item.title} description={item.description} />
-            </List.Item>
-          )}
-        />
-      </Fragment>
-    );
-  }
-}
+  return (
+    <Fragment>
+      <List
+        itemLayout="horizontal"
+        dataSource={this.getData()}
+        renderItem={item => (
+          <List.Item actions={item.actions}>
+            <List.Item.Meta title={item.title} description={item.description} />
+          </List.Item>
+        )}
+      />
+    </Fragment>
+  );
+};
 export default SecurityView;

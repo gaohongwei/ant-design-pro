@@ -60,7 +60,8 @@ class BaseView extends Component {
 
   setBaseInfo = () => {
     const { currentUser, form } = this.props;
-    Object.keys(form.getFieldsValue()).forEach(key => {
+    const fv = form.getFieldsValue();
+    Object.keys(fv).forEach(key => {
       const obj = {};
       obj[key] = currentUser[key] || null;
       form.setFieldsValue(obj);
